@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TikTok Authorization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { margin-bottom: 20px; }
+        .code-box {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .instructions {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ TikTok Authorization</h1>
+        <p>Authorization successful! Copy the code below:</p>
+        
+        <div class="code-box" id="codeDisplay">
+            Loading...
+        </div>
+        
+        <div class="instructions">
+            <p>📱 Go back to Telegram and send:</p>
+            <p><strong>/code YOUR_CODE_HERE</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Get the authorization code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const error = urlParams.get('error');
+        
+        const codeDisplay = document.getElementById('codeDisplay');
+        
+        if (code) {
+            codeDisplay.textContent = code;
+        } else if (error) {
+            codeDisplay.textContent = 'Error: ' + error;
+        } else {
+            codeDisplay.textContent = 'No code found in URL';
+        }
+    </script>
+</body>
+</html>
